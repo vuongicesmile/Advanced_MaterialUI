@@ -1,6 +1,7 @@
 import React from 'react';
 import { AppBar, Drawer, Toolbar, Typography, List, ListItem, Theme, useTheme } from "@mui/material";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import ContactForm from './Form/ContanctForm.tsx';
 
 
 const drawerWidth = 240;
@@ -26,6 +27,7 @@ const simpleStyles = {
   },
   content: {
     marginLeft: drawerWidth,
+    marginTop: 100,
     padding: 3
   }
 }
@@ -57,6 +59,7 @@ export default function NavDrawer() {
       <Drawer  // drawer có zIndex = 1200 nên nó đè lên navbar
         variant='temporary' //temporary để đáp ứng mobile respoonsive so the draw can be closed or disappereared
         open={true}
+        disableEnforceFocus // cho phép focus và nhấn vào ô input
         sx={simpleStyles.drawer}
         PaperProps={{ // phần này dùng để chỉnh màu background và độ dài cho drawer.
           sx: simpleStyles.drawerPaper,
@@ -73,7 +76,7 @@ export default function NavDrawer() {
       </Drawer>
       <main style={simpleStyles.content} className='vuongvyibg'>
         <Routes>
-          <Route path={"/"} element={<>hehe</>}></Route>
+          <Route path={"/form"} element={<ContactForm />}></Route>
           <Route path={"/form"} element={<>form ne</>}></Route>
           <Route path={"/gird"} element={<>gird ne</>}></Route>
         </Routes>
