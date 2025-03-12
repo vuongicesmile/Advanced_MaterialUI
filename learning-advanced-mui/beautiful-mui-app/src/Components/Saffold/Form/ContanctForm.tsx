@@ -11,11 +11,16 @@ const skills = ["Software Dev", "Architect", "Designer", "Business Analyst"];
 export default function ContactForm() {
   return (
     <Paper>
+      
       {/*  như 1 trang giấy bên ngoài, chỉ yếu thêm bóng và background */}
       <form>
         <FormControl>
           <FormGroup
             row
+            sx={{
+              padding: 2,
+              justifyContent: "space-around",
+            }}
           >
             {/*  ô input nè */}
             <TextField
@@ -23,12 +28,14 @@ export default function ContactForm() {
               name="name"
               label="Nameeee"
               variant='outlined' // tạo ra đường viên xung quanh thành phần, thay vì mặc định phẳng
+              sx={{ minWidth: 300, marginRight: 2}}
             />
             {/* ------------------------------------ */}
             {/*  dropdown input cho phép xóa */}
             <Autocomplete  // tạo ra danh sách các tùy chọn dựa trên mảng roles. người dùng có thể nhập vào ô và lựa chọn một trong các vai trò có sẵn
               // trường nhập liệu này được hiển thị dưới dạng textField
               options={roles} // mảng
+              sx={{ minWidth: 300, marginRight: 2}}
               renderInput={(params) => { // hiển thị các phần tử đầu vào (input field) của autocomplete
                 // params chứa các thuộc tính cần thiết để tạo ra trường nhập liệu textField cho autoComplete
                 return (
@@ -53,7 +60,12 @@ export default function ContactForm() {
           <FormGroup
             row
           >
-            <Select>
+            <Select
+              id="skill-select"
+              renderValue={(select: string[]) => select.join(",")}
+              sx={{ minWidth: 300, marginRight: 2}}
+            
+            >
               {skills.map((skillName) => {
                 return (
                   <MenuItem value={skillName} key={skillName}>
