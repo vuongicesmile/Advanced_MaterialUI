@@ -1,5 +1,5 @@
 import React from 'react';
-import { Autocomplete, FormControl, FormGroup, ListItemText, Menu, MenuItem, Paper, Select, TextField } from "@mui/material";
+import { Autocomplete, Button, FormControl, FormControlLabel, FormGroup, FormLabel, ListItemText, Menu, MenuItem, Paper, RadioGroup, Select, Stack, TextField, Radio } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -48,8 +48,8 @@ export default function ContactForm() {
               }}
             />
           </FormGroup>
-           {/* ------------------------------------ */}
-           {/* dropdown chỉ cho phép chọn và chọn lại */}
+          {/* ------------------------------------ */}
+          {/* dropdown chỉ cho phép chọn và chọn lại */}
           <FormGroup
             row
           >
@@ -70,10 +70,47 @@ export default function ContactForm() {
                 renderInput={(params) => {
                   return <TextField {...params} />
                 }}
-                // value={"abcv"}
-                // onChange={() => { }}
+              // value={"abcv"}
+              // onChange={() => { }}
               />
             </LocalizationProvider>
+          </FormGroup>
+
+          {/*  radio selection */}
+          {/* ------------------------------------ */}
+          <FormGroup
+            row
+          >
+            <FormGroup>
+              <FormLabel component={"legend"}>
+                Work Preference
+              </FormLabel>
+            </FormGroup>
+            <RadioGroup
+              id="preference-type-radio"
+              name="preference"
+              value="Work From Home"
+            >
+              <FormControlLabel
+                control={<Radio />}
+                label="Work From Home"
+                value="Work From Home"
+              />
+              <FormControlLabel
+                control={<Radio />}
+                label="Hybrid"
+                value="Hybrid"
+              />
+              <FormControlLabel
+                control={<Radio />}
+                label="In Office"
+                value="In Office"
+              />
+            </RadioGroup>
+            <Stack>
+              <Button>Submit</Button>
+              <Button>Clear</Button>
+            </Stack>
           </FormGroup>
         </FormControl>
       </form>
