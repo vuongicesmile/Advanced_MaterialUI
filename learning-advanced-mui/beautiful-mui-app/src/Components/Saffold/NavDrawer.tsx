@@ -3,6 +3,7 @@ import { AppBar, Drawer, Toolbar, Typography, List, ListItem, Theme, useTheme } 
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import ContactForm from './Form/ContanctForm.tsx';
 import ContactCardGrid from '../Gird/ContanctCardGird.tsx';
+import ContactTable from '../Table/ContactTable.tsx';
 
 
 const drawerWidth = 240;
@@ -40,6 +41,7 @@ export default function NavDrawer() {
 
   const navItems = [
     { text: "Input Form" , route: "/form"},
+    { text: "Table" , route: "/table"},
     { text: "Contact Card Grid", route: "/gird" }
   ];
   return (
@@ -78,7 +80,7 @@ export default function NavDrawer() {
       <main style={simpleStyles.content} className='vuongvyibg'>
         <Routes>
           <Route path={"/form"} element={<ContactForm />}></Route>
-          <Route path={"/form"} element={<>form ne</>}></Route>
+          <Route path={"/table"} element={<ContactTable />}></Route>
           <Route path={"/gird"} element={<ContactCardGrid />}></Route>
         </Routes>
       </main>
