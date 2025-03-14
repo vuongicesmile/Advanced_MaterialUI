@@ -2,6 +2,7 @@ import React from 'react';
 import { AppBar, Drawer, Toolbar, Typography, List, ListItem, Theme, useTheme } from "@mui/material";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import ContactForm from './Form/ContanctForm.tsx';
+import ContactCardGrid from '../Gird/ContanctCardGird.tsx';
 
 
 const drawerWidth = 240;
@@ -78,7 +79,7 @@ export default function NavDrawer() {
         <Routes>
           <Route path={"/form"} element={<ContactForm />}></Route>
           <Route path={"/form"} element={<>form ne</>}></Route>
-          <Route path={"/gird"} element={<>gird ne</>}></Route>
+          <Route path={"/gird"} element={<ContactCardGrid />}></Route>
         </Routes>
       </main>
     </div>
