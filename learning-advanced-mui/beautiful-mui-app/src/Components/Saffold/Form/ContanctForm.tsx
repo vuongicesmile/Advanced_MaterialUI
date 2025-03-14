@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Autocomplete, Button, FormControl, FormControlLabel, FormGroup, FormLabel, ListItemText, Menu, MenuItem, Paper, RadioGroup, Select, Stack, TextField, Radio, AutocompleteChangeReason } from "@mui/material";
+import { Autocomplete, Button, FormControl, FormControlLabel, FormGroup, FormLabel, ListItemText, Menu, MenuItem, Paper, RadioGroup, Select, Stack, TextField, Radio, AutocompleteChangeReason, Dialog, Alert, AlertTitle } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -20,6 +20,8 @@ export default function ContactForm() {
   const [FormValues, setFormValues] = useState<FormValues>(
     getDefaultFormValues()
   );
+
+  const [alertOpen, setAlertOpen] = useState(false); 
 
   const handleTextFieldChange = ( 
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> // import inteface của event
@@ -49,7 +51,29 @@ export default function ContactForm() {
     })
   }
 
+  const handleClearClick = () => {
+    clearValues();
+  }  
+  
+  const clearValues = () => {
+    setFormValues({...getDefaultFormValues()});
+    console.log(FormValues);
+  }
+
+  const handleSubmit = () => {
+    console.log(contactData);
+    console.log(FormValues);
+    
+    contactData.push(FormValues)
+    setAlertOpen(true)
+  }
+
+  const handleAlertClick = () => {
+    setAlertOpen(false)
+  }
+
   return (
+    <>
     <Paper>
       
       {/*  như 1 trang giấy bên ngoài, chỉ yếu thêm bóng và background */}
@@ -175,12 +199,21 @@ export default function ContactForm() {
               />
             </RadioGroup>
             <Stack>
-              <Button>Submit</Button>
-              <Button>Clear</Button>
+              <Button onClick={handleSubmit}>Submit</Button>
+              <Button onClick={handleClearClick}>Clear</Button>
             </Stack>
           </FormGroup>
         </FormControl>
       </form>
     </Paper>
+    <Dialog open={alertOpen} onClose={handleAlertClick}>
+      <Alert onClose={handleAlertClick}>
+        <AlertTitle> 
+          Success !
+        </AlertTitle>
+        Form Submitted
+      </Alert>
+    </Dialog>
+    </>
   );
 }
