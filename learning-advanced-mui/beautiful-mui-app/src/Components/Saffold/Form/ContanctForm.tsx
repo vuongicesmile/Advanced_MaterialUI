@@ -1,14 +1,54 @@
-import React from 'react';
-import { Autocomplete, Button, FormControl, FormControlLabel, FormGroup, FormLabel, ListItemText, Menu, MenuItem, Paper, RadioGroup, Select, Stack, TextField, Radio } from "@mui/material";
+import React, { useState } from 'react';
+import { Autocomplete, Button, FormControl, FormControlLabel, FormGroup, FormLabel, ListItemText, Menu, MenuItem, Paper, RadioGroup, Select, Stack, TextField, Radio, AutocompleteChangeReason } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { contactData, FormValues } from '../../../Data/ContactData.tsx';
 
 
 const roles = ["React", "Angular", "Python", "NodeJS", "Machine Learning"];
 const skills = ["Software Dev", "Architect", "Designer", "Business Analyst"];
+const defaultPreference = "Work From Home";
 
 export default function ContactForm() {
+
+  const today = new Date();
+  const getDefaultFormValues = () => {
+    return { id: contactData.length + 1, name: '', role: '', skills: [], startDate: `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`, preference: defaultPreference };
+  }
+  //  khai báo state với interface
+  const [FormValues, setFormValues] = useState<FormValues>(
+    getDefaultFormValues()
+  );
+
+  const handleTextFieldChange = ( 
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> // import inteface của event
+  ) => {
+    const { name, value } = event.target;
+    setFormValues({ ...FormValues,  // return về 1 objt gồm id , name, role, skill, startDate
+      [name]: value  // rest ra rồi repplace
+    });
+  }
+
+  const handleAutoCompleteChange = (
+    event: React.SyntheticEvent<Element, Event>,
+    value:string,
+  ) => {
+    setFormValues({
+      ...FormValues,
+      role: value || ""
+    })
+  }
+
+  const handleSelectChange = (
+    event
+  ) => {
+    setFormValues({
+      ...FormValues,
+      skills: typeof event.target.value === "string" ? event.target.value .split(", ") : event.target.value
+    })
+  }
+
   return (
     <Paper>
       
@@ -26,9 +66,11 @@ export default function ContactForm() {
             <TextField
               id="name"
               name="name"
-              label="Nameeee"
+              label="Name"
               variant='outlined' // tạo ra đường viên xung quanh thành phần, thay vì mặc định phẳng
               sx={{ minWidth: 300, marginRight: 2}}
+              value={FormValues.name}
+              onChange={handleTextFieldChange} // onchange đầu tiên của input
             />
             {/* ------------------------------------ */}
             {/*  dropdown input cho phép xóa */}
@@ -53,18 +95,26 @@ export default function ContactForm() {
                   </li>
                 )
               }}
+              value={FormValues.role || ""}
+              isOptionEqualToValue={(option, value) => option === value || value === ""}
+              onInputChange={handleAutoCompleteChange}
             />
           </FormGroup>
           {/* ------------------------------------ */}
           {/* dropdown chỉ cho phép chọn và chọn lại */}
           <FormGroup
             row
+            sx={{
+              padding: 2,
+              justifyContent: "space-around",
+            }}
           >
             <Select
               id="skill-select"
-              renderValue={(select: string[]) => select.join(",")}
+              renderValue={(select: string[]) => select?.join(", ")}
               sx={{ minWidth: 300, marginRight: 2}}
-            
+              value={FormValues.skills || ""}
+              onChange={handleSelectChange}
             >
               {skills.map((skillName) => {
                 return (
@@ -79,6 +129,7 @@ export default function ContactForm() {
               <DesktopDatePicker
                 label="Date"
                 inputFormat="MM/DD/YYYY"
+                // value={FormValues.startDate}
                 renderInput={(params) => {
                   return <TextField {...params} />
                 }}
@@ -92,6 +143,10 @@ export default function ContactForm() {
           {/* ------------------------------------ */}
           <FormGroup
             row
+            sx={{
+              padding: 2,
+              justifyContent: "space-around",
+            }}
           >
             <FormGroup>
               <FormLabel component={"legend"}>
@@ -101,12 +156,12 @@ export default function ContactForm() {
             <RadioGroup
               id="preference-type-radio"
               name="preference"
-              value="Work From Home"
+              value={FormValues.preference}
             >
               <FormControlLabel
                 control={<Radio />}
                 label="Work From Home"
-                value="Work From Home"
+                value={FormValues.preference}
               />
               <FormControlLabel
                 control={<Radio />}
