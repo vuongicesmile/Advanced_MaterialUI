@@ -11,7 +11,9 @@ export const StyledFormGroup = styled(FormGroup, {
   skipSx: true
 })<StyledFormGroupProps>(
   (props) => ({
-    padding: props.theme.spacing(2),
+    padding: props.theme.spacing(2), 
+    // không thể trup cập vào theme một cách thông thương 
+    //
     paddingTop: props.paddingtop,
     justifyContent: "space-between"
   })
