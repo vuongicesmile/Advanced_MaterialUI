@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, ReactNode } from "react";
 import { Select, SelectChangeEvent } from "@mui/material";
-import { minWidth } from "../ContactForm";
+import { minWidth } from "../../Saffold/Form/ContanctForm.tsx";
 
 export default function BeautifulSelect(
   props: {

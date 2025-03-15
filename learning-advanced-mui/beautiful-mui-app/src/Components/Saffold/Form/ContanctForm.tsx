@@ -5,6 +5,7 @@ import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { contactData, FormValues } from '../../../Data/ContactData.tsx';
 import BeautifulTextField from '../../Form/FormSubcomponents/BeautifulTextField.tsx';
+import BeautifulAutocomplete from '../../Form/FormSubcomponents/BeautifulAutocomplete.tsx';
 
 
 const roles = ["React", "Angular", "Python", "NodeJS", "Machine Learning"];
@@ -97,6 +98,11 @@ export default function ContactForm() {
               sx={{ minWidth: 300, marginRight: 2}}
               value={FormValues.name}
               onChange={handleTextFieldChange} // onchange đầu tiên của input
+            />
+            {/* -------- */}
+            <BeautifulAutocomplete 
+            value={FormValues.role || ""}
+            onInputChange={() => {}}
             />
             {/* ------------------------------------ */}
             {/*  dropdown input cho phép xóa */}
