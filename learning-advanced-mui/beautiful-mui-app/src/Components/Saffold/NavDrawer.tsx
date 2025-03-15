@@ -4,9 +4,10 @@ import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import ContactForm from './Form/ContanctForm.tsx';
 import ContactCardGrid from '../Gird/ContanctCardGird.tsx';
 import ContactTable from '../Table/ContactTable.tsx';
+import ContactDataGrid from '../DataGrid/ContactDataGrid.tsx';
 
 
-const drawerWidth = 240;
+ const drawerWidth = 240;
 
 const themdStyles = (theme: Theme) => {
   return {
@@ -42,7 +43,8 @@ export default function NavDrawer() {
   const navItems = [
     { text: "Input Form" , route: "/form"},
     { text: "Table" , route: "/table"},
-    { text: "Contact Card Grid", route: "/gird" }
+    { text: "Contact Card Grid", route: "/gird" },
+    { text: "Contact Data Grid", route: "/datagird" }
   ];
   return (
     <BrowserRouter>
@@ -82,6 +84,7 @@ export default function NavDrawer() {
           <Route path={"/form"} element={<ContactForm />}></Route>
           <Route path={"/table"} element={<ContactTable />}></Route>
           <Route path={"/gird"} element={<ContactCardGrid />}></Route>
+          <Route path={"/datagird"} element={<ContactDataGrid />}></Route>
         </Routes>
       </main>
     </div>

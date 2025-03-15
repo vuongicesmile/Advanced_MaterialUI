@@ -4,11 +4,13 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { contactData, FormValues } from '../../../Data/ContactData.tsx';
+import BeautifulTextField from '../../Form/FormSubcomponents/BeautifulTextField.tsx';
 
 
 const roles = ["React", "Angular", "Python", "NodeJS", "Machine Learning"];
 const skills = ["Software Dev", "Architect", "Designer", "Business Analyst"];
 const defaultPreference = "Work From Home";
+export const minWidth = 200;
 
 export default function ContactForm() {
 
@@ -87,7 +89,7 @@ export default function ContactForm() {
             }}
           >
             {/*  ô input nè */}
-            <TextField
+            <BeautifulTextField
               id="name"
               name="name"
               label="Name"
