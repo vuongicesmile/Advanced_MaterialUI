@@ -15,20 +15,26 @@ export default function ContactCardGrid() {
   return (
     <Box m={1}>
       <Button sx={{ marginBottom: 3 }} variant="contained" onClick={() => setOpen(!open)}>Collapse</Button>
-      <Grid container 
-      spacing={2} // chỉ thêm padding top / padding right = 16px
-      sx={{ width: 700, backgroundColor: "grid.main", marginLeft: 0, paddingRight: 2, paddingBottom: 2 }}>
+      <Grid container
+        spacing={2} // chỉ thêm padding top / padding right = 16px
+        sx={{
+          width: 700,
+          backgroundColor: "grid.main",
+          marginLeft: 0,
+          paddingRight: 2,
+          paddingBottom: 2
+        }}>
         {
           contactData.map((contact) => {
-             maxSkills = (contact.skills?.length || 0) > maxSkills ? contact.skills?.length || 0 : maxSkills;
+            maxSkills = (contact.skills?.length || 0) > maxSkills ? contact.skills?.length || 0 : maxSkills;
             return (
-              <Grid item key={contact.name} 
-              // xs={open ? 6 : 12} 
-              // sx={{ ...gridAlignProps, minHeight: 300 }}
+              <Grid item key={contact.name}
+                xs={open ? 6 : 12}
+                sx={{ ...gridAlignProps, minHeight: 300 }}
               >
                 <Card sx={{ width: 300, boxShadow: 6 }}>
                   <CardHeader
-                    title={contact.name} 
+                    title={contact.name}
                     subheader={contact.role}
                     // sx={{ borderBottom: "1px solid", borderBottomColor: "primary.main" }}
                     avatar={
@@ -41,8 +47,8 @@ export default function ContactCardGrid() {
                   //=orientation="horizontal" // mac dinh dong theo hang , con neu them props này thì sẽ ẩn theo chiều dọc
                   >
                     <CardContent
-                     sx={{ height: (104 + (maxSkills * contactLIHeight)) }}
-                     >
+                      sx={{ height: (104 + (maxSkills * contactLIHeight)) }}
+                    >
                       <Typography>
                         <b>Start Date: </b>{contact.startDate}
                       </Typography>
@@ -50,19 +56,19 @@ export default function ContactCardGrid() {
                         <b>Work Preference: </b>{contact.preference}
                       </Typography>
                       <List
-                        sx={{ 
+                        sx={{
                           listStyle: "list-item",
-                          listStyleType: "circle", 
-                          paddingLeft: 2 
+                          listStyleType: "circle",
+                          paddingLeft: 2
                         }}
                         subheader={
                           <ListSubheader
-                            sx={{ 
-                              right: 16, 
-                              position: "inherit", 
-                              fontSize: "1.25rem", 
-                              color: "black", 
-                              paddingLeft: 0 
+                            sx={{
+                              right: 16,
+                              position: "inherit",
+                              fontSize: "1.25rem",
+                              color: "black",
+                              paddingLeft: 0
                             }}
                           >
                             Skills:
