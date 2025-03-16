@@ -11,10 +11,11 @@ import BeautifulDesktopDatePicker from '../../Form/FormSubcomponents/BeautifulDe
 import dayjs from 'dayjs';
 import { useTheme } from "@mui/material/styles";
 import { StyledFormGroup } from '../../Form/FormSubcomponents/StyledFormGroup.tsx';
+import BeautifulRadios from '../../Form/FormSubcomponents/BeautifulRadios.tsx';
 
 const roles = ["React", "Angular", "Python", "NodeJS", "Machine Learning"];
 const skills = ["Software Dev", "Architect", "Designer", "Business Analyst"];
-const defaultPreference = "Work From Home";
+export const defaultPreference = "Work From Home";
 export const minWidth = 200;
 
 export default function ContactForm() {
@@ -86,6 +87,16 @@ export default function ContactForm() {
     
     contactData.push(FormValues)
     setAlertOpen(true)
+  }
+  const handleRadioChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    value: string
+  ) => {
+    const { name } = event.target;
+    setFormValues({
+      ...FormValues,
+      [name]: value
+    });
   }
 
   const handleAlertClick = () => {
@@ -197,44 +208,7 @@ export default function ContactForm() {
 
           {/*  radio selection */}
           {/* ------------------------------------ */}
-          <FormGroup
-            row
-            sx={{
-              padding: 2,
-              justifyContent: "space-around",
-            }}
-          >
-            <FormGroup>
-              <FormLabel component={"legend"}>
-                Work Preference
-              </FormLabel>
-            </FormGroup>
-            <RadioGroup
-              id="preference-type-radio"
-              name="preference"
-              value={FormValues.preference}
-            >
-              <FormControlLabel
-                control={<Radio />}
-                label="Work From Home"
-                value={FormValues.preference}
-              />
-              <FormControlLabel
-                control={<Radio />}
-                label="Hybrid"
-                value="Hybrid"
-              />
-              <FormControlLabel
-                control={<Radio />}
-                label="In Office"
-                value="In Office"
-              />
-            </RadioGroup>
-            <Stack>
-              <Button variant='contained' onClick={handleSubmit}>Submit</Button>
-              <Button variant='beautiful' onClick={handleClearClick}>Clear</Button>
-            </Stack>
-          </FormGroup>
+            <BeautifulRadios preference={FormValues.preference} handleRadioChange={handleRadioChange} />
         </FormControl>
       </form>
     </Paper>

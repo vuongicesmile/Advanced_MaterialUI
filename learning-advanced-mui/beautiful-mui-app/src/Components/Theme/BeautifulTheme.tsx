@@ -58,7 +58,7 @@ const BeautifulTheme = createTheme({
       ]
     }
   },
-  breakpoints: {
+  breakpoints: { // custom theme break point
     values: {
       xs: 0,
       sm: 600,

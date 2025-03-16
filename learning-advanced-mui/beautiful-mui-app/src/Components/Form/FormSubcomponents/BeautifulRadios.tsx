@@ -1,5 +1,5 @@
 import { FormControlLabel, FormControl, FormGroup, FormHelperText, FormLabel, Radio, RadioGroup } from "@mui/material";
-import { defaultPreference, minWidth } from "../ContactForm"
+import { defaultPreference, minWidth } from "../../Saffold/Form/ContanctForm.tsx"
 
 export default function BeautifulRadios(props: { preference: string | undefined, handleRadioChange: (event: React.ChangeEvent<HTMLInputElement>, value: string) => void }) {
   return (
