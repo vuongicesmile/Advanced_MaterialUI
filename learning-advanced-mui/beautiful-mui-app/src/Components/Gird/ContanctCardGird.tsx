@@ -20,24 +20,29 @@ export default function ContactCardGrid() {
       sx={{ width: 700, backgroundColor: "grid.main", marginLeft: 0, paddingRight: 2, paddingBottom: 2 }}>
         {
           contactData.map((contact) => {
-            maxSkills = (contact.skills?.length || 0) > maxSkills ? contact.skills?.length || 0 : maxSkills;
+            // maxSkills = (contact.skills?.length || 0) > maxSkills ? contact.skills?.length || 0 : maxSkills;
             return (
-              <Grid item key={contact.name} xs={open ? 6 : 12} sx={{ ...gridAlignProps, minHeight: 300 }}>
+              <Grid item key={contact.name} 
+              // xs={open ? 6 : 12} 
+              // sx={{ ...gridAlignProps, minHeight: 300 }}
+              >
                 <Card sx={{ width: 300, boxShadow: 6 }}>
                   <CardHeader
                     title={contact.name} 
                     subheader={contact.role}
-                    sx={{ borderBottom: "1px solid", borderBottomColor: "primary.main" }}
+                    // sx={{ borderBottom: "1px solid", borderBottomColor: "primary.main" }}
                     avatar={
                       <Avatar sx={{ backgroundColor: "primary.main" }}>{contact.name?.substring(0, 1).toUpperCase() || "A"}</Avatar>
                     }
                   />
                   <Collapse
-                    in={open}
+                    in={open} // đóng mở class
                   //timeout={2000} 
-                  //orientation="horizontal"
+                  //=orientation="horizontal" // mac dinh dong theo hang , con neu them props này thì sẽ ẩn theo chiều dọc
                   >
-                    <CardContent sx={{ height: (104 + (maxSkills * contactLIHeight)) }}>
+                    <CardContent
+                     //sx={{ height: (104 + (maxSkills * contactLIHeight)) }}
+                     >
                       <Typography>
                         <b>Start Date: </b>{contact.startDate}
                       </Typography>
