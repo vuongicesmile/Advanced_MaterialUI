@@ -1,10 +1,11 @@
 import React from 'react';
-import { AppBar, Drawer, Toolbar, Typography, List, ListItem, Theme, useTheme } from "@mui/material";
+import { AppBar, Drawer, Toolbar, Typography, List, ListItem, Theme, useTheme, ThemeProvider } from "@mui/material";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import ContactForm from './Form/ContanctForm.tsx';
 import ContactCardGrid from '../Gird/ContanctCardGird.tsx';
 import ContactTable from '../Table/ContactTable.tsx';
 import ContactDataGrid from '../DataGrid/ContactDataGrid.tsx';
+import { BeautifulTheme } from '../Theme/BeautifulTheme.tsx';
 
 
  const drawerWidth = 240;
@@ -80,12 +81,15 @@ export default function NavDrawer() {
         </List>
       </Drawer>
       <main style={simpleStyles.content} className='vuongvyibg'>
+        <ThemeProvider theme={BeautifulTheme}> 
+          {/*  import vào để custom themes */}
         <Routes>
           <Route path={"/form"} element={<ContactForm />}></Route>
           <Route path={"/table"} element={<ContactTable />}></Route>
           <Route path={"/gird"} element={<ContactCardGrid />}></Route>
           <Route path={"/datagird"} element={<ContactDataGrid />}></Route>
         </Routes>
+        </ThemeProvider>
       </main>
     </div>
     </BrowserRouter>

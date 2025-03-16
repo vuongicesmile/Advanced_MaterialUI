@@ -153,7 +153,7 @@ export default function ContactForm() {
               isOptionEqualToValue={(option, value) => option === value || value === ""}
               onInputChange={handleAutoCompleteChange}
             /> */}
-          </Style>
+          </StyledFormGroup>
           {/* ------------------------------------ */}
           {/* dropdown chỉ cho phép chọn và chọn lại */}
           <FormGroup
@@ -231,8 +231,8 @@ export default function ContactForm() {
               />
             </RadioGroup>
             <Stack>
-              <Button onClick={handleSubmit}>Submit</Button>
-              <Button onClick={handleClearClick}>Clear</Button>
+              <Button variant='contained' onClick={handleSubmit}>Submit</Button>
+              <Button variant='beautiful' onClick={handleClearClick}>Clear</Button>
             </Stack>
           </FormGroup>
         </FormControl>
