@@ -20,7 +20,7 @@ export default function ContactCardGrid() {
       sx={{ width: 700, backgroundColor: "grid.main", marginLeft: 0, paddingRight: 2, paddingBottom: 2 }}>
         {
           contactData.map((contact) => {
-            // maxSkills = (contact.skills?.length || 0) > maxSkills ? contact.skills?.length || 0 : maxSkills;
+             maxSkills = (contact.skills?.length || 0) > maxSkills ? contact.skills?.length || 0 : maxSkills;
             return (
               <Grid item key={contact.name} 
               // xs={open ? 6 : 12} 
@@ -41,7 +41,7 @@ export default function ContactCardGrid() {
                   //=orientation="horizontal" // mac dinh dong theo hang , con neu them props này thì sẽ ẩn theo chiều dọc
                   >
                     <CardContent
-                     //sx={{ height: (104 + (maxSkills * contactLIHeight)) }}
+                     sx={{ height: (104 + (maxSkills * contactLIHeight)) }}
                      >
                       <Typography>
                         <b>Start Date: </b>{contact.startDate}
