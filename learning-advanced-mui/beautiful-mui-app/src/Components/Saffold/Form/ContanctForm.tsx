@@ -205,10 +205,15 @@ export default function ContactForm() {
             onChange={() => { }}
             />
           </FormGroup>
-
+              <StyledFormGroup row>
           {/*  radio selection */}
           {/* ------------------------------------ */}
-            <BeautifulRadios preference={FormValues.preference} handleRadioChange={handleRadioChange} />
+            <BeautifulRadios  preference={FormValues.preference} handleRadioChange={handleRadioChange} />
+            <Stack direction={'column'} justifyContent="space-around" alignItems="center" sx={{ minWidth: minWidth }}>
+              <Button variant="contained" sx={{ height: 56, width: 100 }} onClick={handleSubmit}>Submit</Button>
+              <Button variant="beautiful" sx={{ height: 56, width: 100 }} onClick={handleClearClick}>Clear</Button>
+            </Stack>
+            </StyledFormGroup>
         </FormControl>
       </form>
     </Paper>
